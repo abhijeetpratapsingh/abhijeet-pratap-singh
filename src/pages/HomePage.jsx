@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { SectionIntro } from '../components/SectionIntro'
+import { Seo, personJsonLd, projectSeoAnchor } from '../components/Seo'
+import { writingNotes, writingPosts } from '../content/writing'
 import {
   certifications,
   contact,
@@ -10,8 +12,6 @@ import {
   isRealProfileUrl,
   proofPoints,
   skillGroups,
-  writingItems,
-  writingPosts,
 } from '../data/siteContent'
 
 export function HomePage() {
@@ -21,7 +21,7 @@ export function HomePage() {
   ].filter(Boolean)
 
   const [featuredPost] = writingPosts
-  const writingPreview = writingItems.slice(0, 2)
+  const writingPreview = writingNotes.slice(0, 2)
   const operatingPoints = [
     'Architecture decisions shaped by real delivery constraints',
     'Performance work grounded in product reliability, not vanity metrics',
@@ -30,15 +30,23 @@ export function HomePage() {
 
   return (
     <div className="page">
+      <Seo
+        type="profile"
+        structuredData={personJsonLd({
+          email: contact.email,
+          location: contact.location,
+          sameAs: visibleProfiles.map((profile) => profile.href),
+        })}
+      />
       <section className="hero">
         <div className="hero-grid">
           <div className="hero-copy">
             <p className="eyebrow">Flutter + AI Engineer</p>
-            <h1>Building scalable mobile and AI-driven products.</h1>
+            <h1>Abhijeet Pratap Singh, Senior Flutter and AI Engineer.</h1>
             <p className="hero-text">
-              I design and ship performant cross-platform applications, offline-first systems,
-              and practical AI tools for teams that care about reliability, delivery speed, and
-              product clarity.
+              Senior Software Engineer in Bengaluru, India, designing Flutter and Dart mobile
+              architecture, offline-first construction-tech apps, performance improvements, and
+              practical AI developer tooling for product teams.
             </p>
             <ul className="proof-strip" aria-label="Core strengths">
               {proofPoints.map((point) => (
@@ -101,7 +109,7 @@ export function HomePage() {
               <div className="feature-project-footer">
                 <p className="project-impact">{project.impact}</p>
                 <Link className="text-link" to={`/projects/${project.slug}`}>
-                  View case study
+                  {projectSeoAnchor(project)}
                 </Link>
               </div>
             </article>

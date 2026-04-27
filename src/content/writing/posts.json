@@ -1,0 +1,83 @@
+[
+  {
+    "slug": "most-developers-use-ai-wrong",
+    "title": "Most Developers Use AI Wrong. Here's the Pattern That Changes Everything.",
+    "eyebrow": "Published essay",
+    "date": "March 21, 2026",
+    "readTime": "4 min read",
+    "summary": "A practical argument for moving from single-prompt AI usage to orchestrated multi-agent execution when the work is repetitive, parallelizable, and operationally expensive.",
+    "intro": "Most teams still use AI one prompt at a time. That works for assistance. It does not work well for scale. The real shift happens when AI stops behaving like a single helper and starts behaving like an organized system.",
+    "sections": [
+      {
+        "heading": "The disaster",
+        "paragraphs": [
+          "We shipped a large refactor. The kind that makes architecture diagrams look cleaner and test suites fall apart.",
+          "Overnight, roughly 80 percent of our tests broke. More than 1,200 files went red, blocked CI, and demanded attention at once.",
+          "I started fixing them with AI the way most developers do: one file at a time. It worked, but only in the most depressing sense of the word. At roughly 50 files a day, the job still translated into weeks of repetitive, low-value effort.",
+          "That is not engineering. That is administrative pain with better tooling. I had no interest in serving that sentence."
+        ]
+      },
+      {
+        "heading": "The wrong mental model",
+        "paragraphs": [
+          "Most developers use AI like a brilliant intern. They assign one task, wait for a response, review the output, and then repeat the cycle.",
+          "That model is useful, but small. It treats AI as a point solution instead of a system. The problem is not that the model is wrong. It is that it leaves most of the leverage on the table.",
+          "The real power is not one AI doing one thing. It is many AIs handling many related tasks in parallel under a clear orchestration pattern."
+        ]
+      },
+      {
+        "heading": "The pattern",
+        "paragraphs": [
+          "The architecture is straightforward. One orchestrator agent acts as the quarterback. It understands the full problem, identifies patterns, breaks the workload into sensible batches, and delegates execution.",
+          "The subagents do the focused work. Each one receives a bounded slice of the task, operates with clean context, and executes independently. No prompt thrashing. No giant overloaded context window. No human babysitting after every tiny step.",
+          "A single agent is a gifted solo musician. A multi-agent system is an orchestra with a conductor. The individual talent matters in both cases, but the scale and throughput are not comparable."
+        ]
+      },
+      {
+        "heading": "What changed in practice",
+        "paragraphs": [
+          "Once the problem was framed as orchestration rather than assistance, the economics changed immediately.",
+          "Work that would have taken roughly 24 days of repetitive cleanup collapsed into a few hours. The shift was not about prompting tricks. It was about structure.",
+          "The task stopped being a month-long grind and became an automation problem with clear boundaries."
+        ]
+      },
+      {
+        "heading": "Why multi-agent systems work better",
+        "paragraphs": [
+          "Parallelism matters because time is the real constraint. A single agent processing files sequentially creates an artificial bottleneck. A coordinated set of agents removes it.",
+          "Focused context improves quality. An agent handling a narrow batch is more reliable than one trying to reason across 1,200 files at once.",
+          "Fault isolation keeps execution moving. If one subagent hits an edge case, the rest of the system does not stall around it.",
+          "Separation of concerns maps cleanly to engineering instincts. The orchestrator plans. The workers execute. The pattern is not exotic. It is the same principle behind scalable software systems and competent team structures.",
+          "Horizontal scaling becomes available immediately. If the task supports more concurrency, you add more agents without changing the underlying model.",
+          "And unlike humans, agents do not become careless at file 847. They apply the same process at the end of the workload that they applied at the beginning."
+        ]
+      },
+      {
+        "heading": "A simple playbook",
+        "paragraphs": [
+          "Start by solving one example manually with AI until the pattern is clear.",
+          "Then teach that pattern to an orchestrator and give it the complete problem set.",
+          "Let it delegate execution to focused subagents running in parallel.",
+          "After that, your job is no longer repetitive repair. Your job becomes review, exception handling, and system design."
+        ]
+      },
+      {
+        "heading": "The bigger shift",
+        "paragraphs": [
+          "This is not really a story about tests. It is a story about how developers frame AI work.",
+          "Most people use AI like a calculator: ask a question, get an answer. Stronger teams use it like a copilot: iterate, refine, and build. The next level is to use it like an organization, with roles, hierarchy, delegation, and parallel execution.",
+          "A single agent is a smart employee. A multi-agent system is a smart organization. The gap between those two models is not incremental. It is operational."
+        ]
+      },
+      {
+        "heading": "Your move",
+        "paragraphs": [
+          "The next time you face repetitive, soul-draining work, stop asking how AI can help you do it a bit faster.",
+          "Ask how the problem can be restructured into orchestration, delegation, and parallel execution.",
+          "That question is usually the difference between saving a few hours and eliminating weeks of waste."
+        ]
+      }
+    ],
+    "cta": "If you have been experimenting with multi-agent workflows in engineering, I would be interested in the patterns that held up under real delivery pressure and the ones that failed."
+  }
+]

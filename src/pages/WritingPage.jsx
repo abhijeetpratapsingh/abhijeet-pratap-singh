@@ -1,13 +1,19 @@
 import { Link } from 'react-router-dom'
 import { SectionIntro } from '../components/SectionIntro'
-import { writingItems, writingPosts } from '../data/siteContent'
+import { Seo } from '../components/Seo'
+import { writingNotes, writingPosts } from '../content/writing'
 
 export function WritingPage() {
   const [leadPost] = writingPosts
-  const notes = writingItems
+  const notes = writingNotes
 
   return (
     <div className="page inner-page">
+      <Seo
+        title="Writing | Abhijeet Pratap Singh"
+        description="Published essays and developing notes from Abhijeet Pratap Singh on engineering systems, AI workflows, Flutter architecture, and delivery."
+        pathname="/writing"
+      />
       <SectionIntro
         eyebrow="Writing"
         title="Published essays and developing notes on engineering systems, AI, and delivery."

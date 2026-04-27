@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Offline-first Flutter as a product decision",
+    "status": "In progress",
+    "summary": "How sync design, local persistence, and failure handling shape real field workflows."
+  },
+  {
+    "title": "Where AI tooling actually saves engineering time",
+    "status": "Research note",
+    "summary": "A practical view of narrow-scope LLM workflows that improve delivery without adding noise."
+  },
+  {
+    "title": "Choosing state management for long-lived mobile applications",
+    "status": "Outline",
+    "summary": "Tradeoffs between BLoC, Provider, and Riverpod from a maintainability perspective."
+  }
+]

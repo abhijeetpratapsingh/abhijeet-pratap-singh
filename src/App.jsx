@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
+import { Seo } from './components/Seo'
 import { HomePage } from './pages/HomePage'
 import { ProjectPage } from './pages/ProjectPage'
 import { ProjectsPage } from './pages/ProjectsPage'
@@ -10,6 +11,11 @@ import { WritingPage } from './pages/WritingPage'
 function NotFoundPage() {
   return (
     <div className="page inner-page not-found-page">
+      <Seo
+        title="Page not found | Abhijeet Pratap Singh"
+        description="The requested page could not be found on Abhijeet Pratap Singh's portfolio."
+        noindex
+      />
       <p className="eyebrow">404</p>
       <h1 className="page-title">Page not found.</h1>
       <p className="lead">

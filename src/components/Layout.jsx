@@ -1,4 +1,5 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { contact } from '../data/siteContent'
 
 const links = [
@@ -9,6 +10,22 @@ const links = [
 ]
 
 export function Layout() {
+  const { pathname } = useLocation()
+  const mainRef = useRef(null)
+  const [transitionState, setTransitionState] = useState('route-enter')
+
+  useEffect(() => {
+    setTransitionState('route-enter')
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    mainRef.current?.focus({ preventScroll: true })
+
+    const timeoutId = window.setTimeout(() => {
+      setTransitionState('route-idle')
+    }, 320)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [pathname])
+
   return (
     <div className="site-shell">
       <header className="site-header">
@@ -37,8 +54,10 @@ export function Layout() {
         </nav>
       </header>
 
-      <main>
-        <Outlet />
+      <main ref={mainRef} tabIndex={-1}>
+        <div key={pathname} className={`route-shell ${transitionState}`}>
+          <Outlet />
+        </div>
       </main>
     </div>
   )

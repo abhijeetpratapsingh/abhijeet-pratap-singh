@@ -1,3 +1,4 @@
+import { Seo, personJsonLd } from '../components/Seo'
 import {
   certifications,
   contact,
@@ -16,6 +17,19 @@ export function ResumePage() {
 
   return (
     <div className="page inner-page resume-page">
+      <Seo
+        title="Resume | Abhijeet Pratap Singh, Senior Software Engineer"
+        description={resumeSections.summary}
+        pathname="/resume"
+        type="profile"
+        structuredData={personJsonLd({
+          email: contact.email,
+          location: contact.location,
+          sameAs: visibleProfiles
+            .filter((profile) => profile.href.startsWith('http'))
+            .map((profile) => profile.href),
+        })}
+      />
       <header className="resume-header">
         <p className="eyebrow">Resume</p>
         <h1 className="page-title">Abhijeet Pratap Singh</h1>
@@ -52,11 +66,14 @@ export function ResumePage() {
         <div className="resume-summary-strip">
           <article>
             <p className="panel-label">Focus</p>
-            <p>Flutter architecture, offline-first mobile systems, and applied AI tooling.</p>
+            <p>Flutter architecture, Dart mobile apps, offline-first systems, and applied AI tooling.</p>
           </article>
           <article>
             <p className="panel-label">Recent work</p>
-            <p>Enterprise construction-tech delivery, performance tuning, and internal AI workflows.</p>
+            <p>
+              Senior Software Engineer work in Bengaluru, India across construction-tech delivery,
+              performance tuning, and internal AI workflows.
+            </p>
           </article>
           <article>
             <p className="panel-label">Strength</p>

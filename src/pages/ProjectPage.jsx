@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { Seo, projectJsonLd, projectSeoDescription, projectSeoTitle } from '../components/Seo'
 import { contact, featuredProjects } from '../data/siteContent'
 
 export function ProjectPage() {
@@ -10,6 +11,11 @@ export function ProjectPage() {
   if (!project) {
     return (
       <div className="page inner-page">
+        <Seo
+          title="Project not found | Abhijeet Pratap Singh"
+          description="The requested project could not be found on Abhijeet Pratap Singh's portfolio."
+          noindex
+        />
         <p className="eyebrow">Not found</p>
         <h1 className="page-title">Project not found.</h1>
         <Link className="text-link" to="/projects">
@@ -21,6 +27,13 @@ export function ProjectPage() {
 
   return (
     <div className="page project-page">
+      <Seo
+        title={`${projectSeoTitle(project)} | Abhijeet Pratap Singh`}
+        description={projectSeoDescription(project)}
+        pathname={`/projects/${project.slug}`}
+        type="article"
+        structuredData={projectJsonLd(project, `/projects/${project.slug}`)}
+      />
       <section className="project-hero">
         <p className="eyebrow">{project.eyebrow}</p>
         <h1 className="page-title">{project.title}</h1>

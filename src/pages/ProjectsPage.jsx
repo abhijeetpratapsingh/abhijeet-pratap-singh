@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { SectionIntro } from '../components/SectionIntro'
+import { Seo, projectSeoAnchor } from '../components/Seo'
 import { featuredProjects } from '../data/siteContent'
 
 export function ProjectsPage() {
@@ -7,6 +8,11 @@ export function ProjectsPage() {
 
   return (
     <div className="page inner-page">
+      <Seo
+        title="Projects | Abhijeet Pratap Singh"
+        description="Case studies from Abhijeet Pratap Singh across Flutter architecture, offline-first mobile systems, AI tooling, and platform engineering."
+        pathname="/projects"
+      />
       <SectionIntro
         eyebrow="Projects"
         title="Projects that show how I work under product, performance, and delivery constraints."
@@ -34,7 +40,7 @@ export function ProjectsPage() {
         <div className="feature-project-footer">
           <p className="project-impact">{leadProject.impact}</p>
           <Link className="button button-primary" to={`/projects/${leadProject.slug}`}>
-            View case study
+            {projectSeoAnchor(leadProject)}
           </Link>
         </div>
       </section>
@@ -61,7 +67,7 @@ export function ProjectsPage() {
             </div>
             <p className="project-impact">{project.impact}</p>
             <Link className="text-link" to={`/projects/${project.slug}`}>
-              View case study
+              {projectSeoAnchor(project)}
             </Link>
           </article>
         ))}
