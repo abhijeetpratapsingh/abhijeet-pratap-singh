@@ -6,6 +6,26 @@ const distPath = path.join(root, 'dist')
 const serverPath = path.join(distPath, 'server')
 const templatePath = path.join(distPath, 'index.html')
 
+async function findFileRecursively(directory, matcher) {
+  const entries = await fs.readdir(directory, { withFileTypes: true })
+
+  for (const entry of entries) {
+    const fullPath = path.join(directory, entry.name)
+
+    if (entry.isDirectory()) {
+      const nestedMatch = await findFileRecursively(fullPath, matcher)
+
+      if (nestedMatch) {
+        return nestedMatch
+      }
+    } else if (matcher(entry.name, fullPath)) {
+      return fullPath
+    }
+  }
+
+  return null
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -110,14 +130,16 @@ function htmlOutputPathForRoute(pathname) {
 }
 
 const template = await fs.readFile(templatePath, 'utf8')
-const serverEntries = await fs.readdir(serverPath)
-const serverEntry = serverEntries.find((file) => file.startsWith('entry-server') && file.endsWith('.js'))
+const serverEntryPath = await findFileRecursively(
+  serverPath,
+  (fileName) => fileName.startsWith('entry-server') && fileName.endsWith('.js'),
+)
 
-if (!serverEntry) {
+if (!serverEntryPath) {
   throw new Error('Could not find the built SSR entry in dist/server.')
 }
 
-const { getPrerenderRoutes, render } = await import(path.join(serverPath, serverEntry))
+const { getPrerenderRoutes, render } = await import(serverEntryPath)
 const routes = getPrerenderRoutes()
 
 await Promise.all(
